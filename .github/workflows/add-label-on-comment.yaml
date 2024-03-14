@@ -12,17 +12,13 @@ jobs:
             - name: Add LGTM label
               uses: actions/github-script@v5
               with:
-                  github-token: ${{secrets.GITHUB_TOKEN}}
+                  github-token: ${{secrets.CI_GITHUB_TOKEN}}
                   script: |
-                      const issue_number = context.issue.number;
-                      const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-
-                      await octokit.rest.issues.addLabels({
+                      github.rest.issues.createComment({
+                        issue_number: context.issue.number,
                         owner: context.repo.owner,
                         repo: context.repo.repo,
-                        issue_number: issue_number,
-                        labels: ['lgtm']
-                      });
-        
+                        body: 'LGTM 라벨이 추가되었습니다.'
+                      })
 
 
