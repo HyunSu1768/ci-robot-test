@@ -24,3 +24,5 @@ jobs:
                         issue_number: issue_number,
                         labels: ['lgtm']
                       });
+
+
